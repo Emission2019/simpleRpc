@@ -11,11 +11,13 @@ public abstract class Config {
      * 从配置文件中解析服务器暴露的服务列表
      */
     private static volatile Map<String, String> providerServiceMap;
+    private static volatile Map<String, String> customerServiceMap;
+
     private static final Object LOCK = new Object();
 
 
     static {
-        try(InputStream in = Config.class.getResourceAsStream("/serverConfig.properties")){
+        try(InputStream in = Config.class.getResourceAsStream("/rpcConfig.properties")){
             properties = new Properties();
             properties.load(in);
         } catch (IOException e) {
@@ -24,7 +26,7 @@ public abstract class Config {
     }
 
     /**
-     * 懒加载单例,获得客户端暴露服务列表
+     * 懒加载单例,获得服务端暴露服务列表
      * 放入map之前需要去除"rpcProviderService"前缀
      * @return
      */
@@ -47,6 +49,31 @@ public abstract class Config {
         return providerServiceMap;
     }
 
+    /**
+     * 懒加载单例,获得客户端需要创建的代理对象
+     * 放入map之前需要去除"rpcCustomerService"前缀
+     * @return
+     */
+    public static Map<String, String> getCustomerServiceMap(){
+        if( customerServiceMap == null){
+            synchronized (LOCK){
+                if(customerServiceMap == null){
+                    customerServiceMap = new HashMap<>();
+                    Set<String> nameSet = properties.stringPropertyNames();
+                    Iterator<String> iterator = nameSet.iterator();
+                    while (iterator.hasNext()){
+                        String name = iterator.next();
+                        if(name.startsWith("rpcCustomerService")){
+                            customerServiceMap.put(name.substring(19),properties.getProperty(name));
+                        }
+                    }
+                }
+            }
+        }
+        return customerServiceMap;
+    }
+
+
     public static String getSerialization(){
         return properties.getProperty("serialization");
     }
@@ -59,5 +86,8 @@ public abstract class Config {
         return properties.getProperty("port");
     }
 
+    public static String getRegisterAddress(){return properties.getProperty("register.address");}
+
+    public static String getRegisterPort(){return (String) properties.getOrDefault("register.port","2181");}
 
 }

@@ -1,5 +1,6 @@
 package com.mylearning.provider;
 
+import com.mylearning.commom.config.Config;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.retry.ExponentialBackoffRetry;
@@ -23,7 +24,10 @@ public class ZkTest {
         ExponentialBackoffRetry retry = new ExponentialBackoffRetry(1000, 1);
 //        CuratorFrameworkFactory.newClient("198.168.32.131",60*1000,15*1000,retry);
         // 第二种方式
-        client = CuratorFrameworkFactory.builder().connectString("192.168.32.131:2181").
+
+        String address = Config.getRegisterAddress();
+        String ip = Config.getRegisterPort();
+        client = CuratorFrameworkFactory.builder().connectString(Config.getRegisterAddress()+":"+Config.getRegisterPort()).
                 sessionTimeoutMs(5 * 1000).connectionTimeoutMs(5 * 1000).retryPolicy(retry).build();
         // 开启连接
         client.start();
