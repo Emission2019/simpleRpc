@@ -13,7 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class ZkCustomer implements Customer{
 
-    private ConcurrentHashMap<String,List<String>> serviceMap = new ConcurrentHashMap<>();
+    private final ConcurrentHashMap<String,List<String>> serviceMap = new ConcurrentHashMap<>();
     private CuratorFramework client;
 
     @Override
@@ -51,6 +51,6 @@ public class ZkCustomer implements Customer{
 
     @Override
     public void close() {
-        client.close();
+        if(client != null) client.close();
     }
 }

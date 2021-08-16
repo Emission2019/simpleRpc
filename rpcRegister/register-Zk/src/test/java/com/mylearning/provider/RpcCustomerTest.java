@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 public class RpcCustomerTest {
-    
+
     @Test
     public void testRpcCustomerService() throws Exception {
         Customer zkCustomer = new ZkCustomer();

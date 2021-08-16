@@ -72,8 +72,6 @@ public abstract class Config {
         }
         return customerServiceMap;
     }
-
-
     public static String getSerialization(){
         return properties.getProperty("serialization");
     }

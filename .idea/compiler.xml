@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="serialize-Gson" />
+        <module name="serializer-JDK" />
         <module name="protocol" />
         <module name="compress" />
         <module name="rpcNetty" />
