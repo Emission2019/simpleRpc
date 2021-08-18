@@ -3,10 +3,12 @@ package com.mylearning.commom.message;
 import com.mylearning.commom.message.messageImpl.RpcRequestMessage;
 import com.mylearning.commom.message.messageImpl.RpcResponseMessage;
 
+
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public abstract class Message{
+public abstract class Message implements Serializable {
     protected final static byte RPC_REQUEST_MESSAGE = 0x01;
     protected final static byte RPC_RESPONSE_MESSAGE = 0x02;
     private final static HashMap<Byte,Class<? extends Message>> MESSAGE_MAP = new HashMap<>();

@@ -12,6 +12,7 @@
         <module name="compress" />
         <module name="rpcNetty" />
         <module name="serialize-ProtoBuf" />
+        <module name="rpcTest" />
         <module name="serializer" />
         <module name="protocol-DIY" />
         <module name="rpcCommon" />

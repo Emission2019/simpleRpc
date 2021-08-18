@@ -30,10 +30,7 @@ public class ProtocolManager {
         return INSTANCE;
     }
 
-    public static void main(String[] args) {
-        ProtocolManager protocolManager = new ProtocolManager();
-        protocolManager.loadProtocol();
-    }
+
     private void chooseProtocol(){
         String protocolName = "Protocol" + Config.getProtocol();
         protocol = protocolMap.get(protocolName);

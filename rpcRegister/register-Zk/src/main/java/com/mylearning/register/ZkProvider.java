@@ -13,8 +13,6 @@ public class ZkProvider implements Provider {
 
     private CuratorFramework client;
 
-
-
     /**
      * 启动ZkProvider
      * 具体参数先写死,后面写在配置里面

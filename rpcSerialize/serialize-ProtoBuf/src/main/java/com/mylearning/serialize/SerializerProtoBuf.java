@@ -1,7 +1,7 @@
 package com.mylearning.serialize;
 
 
-import com.mylearning.commom.message.Message;
+
 
 public class SerializerProtoBuf implements Serializer{
 

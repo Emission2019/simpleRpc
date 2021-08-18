@@ -70,7 +70,4 @@ public class MessageCodecSharable extends MessageToMessageCodec<ByteBuf, Message
         list.add(message);
     }
 
-    public static void main(String[] args) {
-
-    }
 }
